@@ -5,8 +5,8 @@ var plugins = require('gulp-load-plugins')();
 
 var paths = {
     lint: ['./gulpfile.js', './lib/**/*.js'],
-    watch: ['./gulpfile.js', './lib/**', './test/**/*.js', '!test/{temp,temp/**}'],
-    tests: ['./test/**/*.js', '!test/{temp,temp/**}'],
+    watch: ['./gulpfile.js', './lib/**', './spec/**/*.js', '!spec/{temp,temp/**}'],
+    tests: ['./spec/**/*.js', '!spec/{temp,temp/**}'],
     source: ['./lib/*.js']
 };
 
@@ -33,7 +33,7 @@ gulp.task('istanbul', function (cb) {
     .on('finish', function () {
         gulp.src(paths.tests)
         .pipe(plugins.plumber(plumberConf))
-        .pipe(plugins.mocha())
+        .pipe(plugins.jasmine())
         .pipe(plugins.istanbul.writeReports()) // Creating the reports after tests runned
         .on('finish', function() {
             process.chdir(__dirname);

@@ -3,14 +3,6 @@
 
 ctci in JavaScript.
 
-
-## Install
-
-```bash
-$ npm install --save js-ctci
-```
-
-
 ## Usage
 
 ```javascript
