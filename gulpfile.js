@@ -4,10 +4,10 @@ var gulp   = require('gulp');
 var plugins = require('gulp-load-plugins')();
 
 var paths = {
-    lint: ['./gulpfile.js', './lib/**/*.js'],
-    watch: ['./gulpfile.js', './lib/**', './spec/**/*.js', '!spec/{temp,temp/**}'],
+    lint: ['./gulpfile.js', './src/**/*.js'],
+    watch: ['./gulpfile.js', './src/**', './spec/**/*.js', '!spec/{temp,temp/**}'],
     tests: ['./spec/**/*.js', '!spec/{temp,temp/**}'],
-    source: ['./lib/*.js']
+    source: ['./src/*.js']
 };
 
 var plumberConf = {};
