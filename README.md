@@ -1,5 +1,5 @@
 # js_ctci 
-[![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Dependency Status][daviddm-url]][daviddm-image] [![Coverage Status][coveralls-image]][coveralls-url]
+[![Build Status][travis-image]][travis-url] [![Dependency Status][daviddm-url]][daviddm-image] [![Coverage Status][coveralls-image]][coveralls-url]
 
 ctci in JavaScript.
 
@@ -24,10 +24,6 @@ In lieu of a formal styleguide, take care to maintain the existing coding style.
 
 Copyright (c) 2015 George Sun. Licensed under the MIT license.
 
-
-
-[npm-url]: https://npmjs.org/package/js-ctci
-[npm-image]: https://badge.fury.io/js/js-ctci.svg
 [travis-url]: https://travis-ci.org/puffsun/js-ctci
 [travis-image]: https://travis-ci.org/puffsun/js-ctci.svg?branch=master
 [daviddm-url]: https://david-dm.org/puffsun/js-ctci.svg?theme=shields.io
