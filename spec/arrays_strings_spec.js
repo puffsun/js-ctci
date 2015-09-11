@@ -1,3 +1,4 @@
+"use strict";
 
 var array_string = require("../src/arrays_strings.js");
 
@@ -31,6 +32,19 @@ describe("Testing arrays and strings data structures", function() {
 
             var str = randomStrMaker(257);
             expect(array_string.unique_chars(str)).toEqual(false);
+        });
+    });
+
+    describe("Testing reverse of a string", function() {
+        it("should reverse a given string", function() {
+            var reversed = array_string.reverse("abc");
+            expect(reversed).toEqual("cba");
+        });
+
+        it("should return empty string or null", function() {
+            expect(array_string.reverse(null)).toBeNull();
+            expect(array_string.reverse("")).toEqual("");
+            expect(array_string.reverse(undefined)).toBeUndefined();
         });
     });
 });

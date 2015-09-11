@@ -27,7 +27,16 @@ module.exports = (function() {
         return true;
     };
 
+    var reverse = function(str) {
+        if (!str) {
+            return str;
+        }
+        // TODO reverse a string manually
+        return str.split("").reverse().join("");
+    };
+
     return {
-        unique_chars: unique_chars
+        unique_chars: unique_chars,
+        reverse: reverse
     };
 }());
