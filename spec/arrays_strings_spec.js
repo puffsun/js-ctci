@@ -35,6 +35,23 @@ describe("Testing arrays and strings data structures", function() {
         });
     });
 
+    describe("Testing reverse of a string with naive algorithm", function() {
+        it("should reverse a given string", function() {
+            var reversed = array_string.naive_reverse("abc");
+            expect(reversed).toEqual("cba");
+        });
+
+        it("should return empty string or null", function() {
+            expect(array_string.naive_reverse(null)).toBeNull();
+            expect(array_string.naive_reverse("")).toEqual("");
+            expect(array_string.naive_reverse(undefined)).toBeUndefined();
+        });
+
+        it("should return wrong result with utf8 chars", function() {
+            expect(array_string.naive_reverse("Lorem ipsum 𝌆 dolor sit ameͨ͆t.")).not.toEqual(".teͨ͆ma tis rolod 𝌆 muspi meroL");
+        });
+    });
+
     describe("Testing reverse of a string", function() {
         it("should reverse a given string", function() {
             var reversed = array_string.reverse("abc");
@@ -45,6 +62,18 @@ describe("Testing arrays and strings data structures", function() {
             expect(array_string.reverse(null)).toBeNull();
             expect(array_string.reverse("")).toEqual("");
             expect(array_string.reverse(undefined)).toBeUndefined();
+        });
+
+        it("should return correct result with utf8 chars", function() {
+            var input = 'Lorem ipsum 𝌆 dolor sit ameͨ͆t.';
+            var reversed = '.t͆ͨema tis rolod 𝌆 muspi meroL';
+
+            expect(array_string.reverse(input)).toEqual(reversed);
+
+            input = "\uD800\uD801\uD802";
+            reversed = "\uD802\uD801\uD800";
+
+            expect(array_string.reverse(input)).toEqual(reversed);
         });
     });
 });
