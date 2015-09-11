@@ -1,13 +1,17 @@
-# js_ctci 
+## JavaScript CTCI
+
 [![Build Status][travis-image]][travis-url] [![Dependency Status][daviddm-url]][daviddm-image] [![Coverage Status][coveralls-image]][coveralls-url]
 
-ctci in JavaScript.
+## Introduction
 
-## Usage
+Solutions to questions in the [Cracking the Coding Interview 5th editions](http://www.amazon.com/Cracking-Coding-Interview-Programming-Questions/dp/098478280X), which is a brilliant book.
 
-```javascript
-var jsCtci = require('js-ctci');
-jsCtci(); // "awesome"
+## Setup
+
+```
+git clone https://github.com/puffsun/js-ctci.git
+cd js-ctci && npm install
+gulp
 ```
 
 ## API
