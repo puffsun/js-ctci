@@ -76,4 +76,28 @@ describe("Testing arrays and strings data structures", function() {
             expect(array_string.reverse(input)).toEqual(reversed);
         });
     });
+
+    describe("Testing if one string is permutation of the other", function() {
+        it("should return true for both empty or null strings", function() {
+            expect(array_string.slow_permutation("", "")).toEqual(true);
+            expect(array_string.slow_permutation(null, null)).toEqual(true);
+            expect(array_string.slow_permutation(undefined, undefined)).toEqual(true);
+
+            expect(array_string.slow_permutation("", null)).toEqual(true);
+            expect(array_string.slow_permutation(null, undefined)).toEqual(true);
+            expect(array_string.slow_permutation("", undefined)).toEqual(true);
+        });
+
+        it("should return false with non-permutations", function() {
+             expect(array_string.slow_permutation("abc", "ab")).toEqual(false);
+        });
+
+        it("should return true with same strings", function() {
+            expect(array_string.slow_permutation("ab", "ab")).toEqual(true);
+        });
+
+        it("should return true with permutations", function() {
+            expect(array_string.slow_permutation("ab", "ba")).toEqual(true);
+        });
+    });
 });

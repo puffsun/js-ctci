@@ -60,9 +60,33 @@ module.exports = (function() {
         return result;
     };
 
+    var slow_permutation = function(str1, str2) {
+        if (!str1 && !str2) {
+            return true;
+        }
+
+        if (str1.length !== str2.length) {
+            return false;
+        }
+
+        if (str1 === str2) {
+            return true;
+        } else {
+            return sort_str_asc(str1) === sort_str_asc(str2);
+        }
+    };
+
+    var sort_str_asc = function(str) {
+        if (!str) {
+            return str;
+        }
+        return str.split("").sort().join("");
+    };
+
     return {
-        unique_chars  : unique_chars,
-        naive_reverse : naive_reverse,
-        reverse       : reverse
+        unique_chars     : unique_chars,
+        naive_reverse    : naive_reverse,
+        reverse          : reverse,
+        slow_permutation : slow_permutation
     };
 }());
