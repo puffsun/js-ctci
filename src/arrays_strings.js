@@ -76,6 +76,54 @@ module.exports = (function() {
         }
     };
 
+    var permutation = function(str1, str2) {
+        if (!str1 && !str2) {
+            return true;
+        }
+
+        if (str1.length !== str2.length) {
+            return false;
+        }
+        var container = {},
+            i, length;
+        for (i = 0, length = str1.length; i < length; i++) {
+            if (container[str1[i]]) {
+                container[str1[i]] += 1;
+            } else {
+                container[str1[i]] = 1;
+            }
+        }
+
+        for (i = 0, length = str2.length; i < length; i++) {
+            if (container[str2[i]]) {
+                container[str2[i]] -= 1;
+                if (container[str2[i]] === 0) {
+                    delete container[str2[i]];
+                }
+            } else {
+                return false;
+            }
+        }
+        return is_empty_object(container);
+    };
+
+    function is_empty_object(obj) {
+        if (!obj || obj.length === 0) {
+            return true;
+        }
+
+        if (obj.length > 0) {
+            return false;
+        }
+
+        for (var k in obj) {
+            if (obj.hasOwnProperty(k)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
     var sort_str_asc = function(str) {
         return str.split("").sort().join("");
     };
@@ -84,6 +132,7 @@ module.exports = (function() {
         unique_chars     : unique_chars,
         naive_reverse    : naive_reverse,
         reverse          : reverse,
-        slow_permutation : slow_permutation
+        slow_permutation : slow_permutation,
+        permutation      : permutation
     };
 }());

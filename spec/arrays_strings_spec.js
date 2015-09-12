@@ -74,10 +74,14 @@ describe("Testing arrays and strings data structures", function() {
             reversed = "\uD802\uD801\uD800";
 
             expect(array_string.reverse(input)).toEqual(reversed);
+
+            input = "\u20D1ab\u0311c\u03E1\u00E2";
+            reversed = "\u00E2\u03E1c\u0311ba\u20D1";
+            expect(array_string.reverse(input)).toEqual(reversed);
         });
     });
 
-    describe("Testing if one string is permutation of the other", function() {
+    describe("Testing slow permutation", function() {
         it("should return true for both empty or null strings", function() {
             expect(array_string.slow_permutation("", "")).toEqual(true);
             expect(array_string.slow_permutation(null, null)).toEqual(true);
@@ -98,6 +102,38 @@ describe("Testing arrays and strings data structures", function() {
 
         it("should return true with permutations", function() {
             expect(array_string.slow_permutation("ab", "ba")).toEqual(true);
+        });
+
+        it("should return false without permutations", function() {
+            expect(array_string.slow_permutation("ab", "cd")).toEqual(false);
+        });
+    });
+
+    describe("Testing fast permutation", function() {
+        it("should return true for both empty or null strings", function() {
+            expect(array_string.permutation("", "")).toEqual(true);
+            expect(array_string.permutation(null, null)).toEqual(true);
+            expect(array_string.permutation(undefined, undefined)).toEqual(true);
+
+            expect(array_string.permutation("", null)).toEqual(true);
+            expect(array_string.permutation(null, undefined)).toEqual(true);
+            expect(array_string.permutation("", undefined)).toEqual(true);
+        });
+
+        it("should return false with non-permutations", function() {
+             expect(array_string.permutation("abc", "ab")).toEqual(false);
+        });
+
+        it("should return true with same strings", function() {
+            expect(array_string.slow_permutation("ab", "ab")).toEqual(true);
+        });
+
+        it("should return true with permutations", function() {
+            expect(array_string.permutation("ab", "ba")).toEqual(true);
+        });
+
+        it("should return false without permutations", function() {
+            expect(array_string.permutation("ab", "cd")).toEqual(false);
         });
     });
 });
