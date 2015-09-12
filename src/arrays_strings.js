@@ -107,7 +107,7 @@ module.exports = (function() {
         return is_empty_object(container);
     };
 
-    function is_empty_object(obj) {
+    var is_empty_object = function(obj) {
         if (!obj || obj.length === 0) {
             return true;
         }
@@ -122,7 +122,7 @@ module.exports = (function() {
             }
         }
         return true;
-    }
+    };
 
     var sort_str_asc = function(str) {
         return str.split("").sort().join("");
@@ -133,6 +133,7 @@ module.exports = (function() {
         naive_reverse    : naive_reverse,
         reverse          : reverse,
         slow_permutation : slow_permutation,
-        permutation      : permutation
+        permutation      : permutation,
+        is_empty_object  : is_empty_object
     };
 }());

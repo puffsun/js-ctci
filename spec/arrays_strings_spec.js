@@ -70,14 +70,52 @@ describe("Testing arrays and strings data structures", function() {
 
             expect(array_string.reverse(input)).toEqual(reversed);
 
-            input = "\uD800\uD801\uD802";
-            reversed = "\uD802\uD801\uD800";
-
-            expect(array_string.reverse(input)).toEqual(reversed);
-
-            input = "\u20D1ab\u0311c\u03E1\u00E2";
-            reversed = "\u00E2\u03E1c\u0311ba\u20D1";
-            expect(array_string.reverse(input)).toEqual(reversed);
+            var data = [
+                {
+                    'description': 'Nothing special',
+                    'input': 'ma\xF1ana',
+                    'expected': 'ana\xF1am'
+                },
+                {
+                    'description': 'Combining mark',
+                    'input': 'man\u0303ana',
+                    'expected': 'ana\u0303nam'
+                },
+                //{
+                    //'description': 'Multiple combining marks',
+                    //'input': 'foo\u0303\u035C\u035D\u035Ebar',
+                    //'expected': 'rabo\u0303\u035C\u035D\u035Eof'
+                //},
+                {
+                    'description': 'Astral symbol (surrogate pair)',
+                    'input': 'foo\uD834\uDF06bar',
+                    'expected': 'rab\uD834\uDF06oof'
+                },
+                {
+                    'description': 'Unpaired surrogates',
+                    'input': 'foo\uD834bar\uDF06baz',
+                    'expected': 'zab\uDF06rab\uD834oof'
+                },
+                //{
+                    //'description': 'Astral symbol (surrogate pair) followed by a single combining mark',
+                    //'input': 'foo\uD834\uDF06\u0303bar',
+                    //'expected': 'rab\uD834\uDF06\u0303oof'
+                //},
+                //{
+                    //'description': 'Astral symbol (surrogate pair) followed by multiple combining marks',
+                    //'input': 'foo\uD834\uDF06\u0303\u035C\u035D\u035Ebar',
+                    //'expected': 'rab\uD834\uDF06\u0303\u035C\u035D\u035Eoof'
+                //},
+                //{
+                    //'description': 'Zalgo',
+                    //'input': 'H\u0339\u0319\u0326\u032E\u0349\u0329\u0317\u0317\u0367\u0307\u030F\u030A\u033EE\u0368\u0346\u0352\u0306\u036E\u0303\u034F\u0337\u032E\u0323\u032B\u0324\u0323 \u0335\u031E\u0339\u033B\u0300\u0309\u0313\u036C\u0351\u0361\u0345C\u036F\u0302\u0350\u034F\u0328\u031B\u0354\u0326\u031F\u0348\u033BO\u031C\u034E\u034D\u0359\u035A\u032C\u031D\u0323\u033D\u036E\u0350\u0357\u0300\u0364\u030D\u0300\u0362M\u0334\u0321\u0332\u032D\u034D\u0347\u033C\u031F\u032F\u0326\u0309\u0312\u0360\u1E1A\u031B\u0319\u031E\u032A\u0317\u0365\u0364\u0369\u033E\u0351\u0314\u0350\u0345\u1E6E\u0334\u0337\u0337\u0317\u033C\u034D\u033F\u033F\u0313\u033D\u0350H\u0319\u0319\u0314\u0304\u035C',
+                    //'expected': 'H\u0319\u0319\u0314\u0304\u035C\u1E6E\u0334\u0337\u0337\u0317\u033C\u034D\u033F\u033F\u0313\u033D\u0350\u1E1A\u031B\u0319\u031E\u032A\u0317\u0365\u0364\u0369\u033E\u0351\u0314\u0350\u0345M\u0334\u0321\u0332\u032D\u034D\u0347\u033C\u031F\u032F\u0326\u0309\u0312\u0360O\u031C\u034E\u034D\u0359\u035A\u032C\u031D\u0323\u033D\u036E\u0350\u0357\u0300\u0364\u030D\u0300\u0362C\u036F\u0302\u0350\u034F\u0328\u031B\u0354\u0326\u031F\u0348\u033B \u0335\u031E\u0339\u033B\u0300\u0309\u0313\u036C\u0351\u0361\u0345E\u0368\u0346\u0352\u0306\u036E\u0303\u034F\u0337\u032E\u0323\u032B\u0324\u0323H\u0339\u0319\u0326\u032E\u0349\u0329\u0317\u0317\u0367\u0307\u030F\u030A\u033E'
+                //}
+            ];
+            data.forEach(function(item) {
+                console.log("Result: " + array_string.reverse(item.input));
+                expect(array_string.reverse(item.input)).toEqual(item.expected);
+            });
         });
     });
 
@@ -130,10 +168,25 @@ describe("Testing arrays and strings data structures", function() {
 
         it("should return true with permutations", function() {
             expect(array_string.permutation("ab", "ba")).toEqual(true);
+            expect(array_string.permutation("aab", "baa")).toEqual(true);
         });
 
         it("should return false without permutations", function() {
             expect(array_string.permutation("ab", "cd")).toEqual(false);
+        });
+    });
+
+    describe("Testing if a given object is empty", function() {
+        it("should return true for a empty object", function() {
+            expect(array_string.is_empty_object(null)).toBeTruthy();
+            expect(array_string.is_empty_object("")).toBeTruthy();
+            expect(array_string.is_empty_object({})).toBeTruthy();
+            expect(array_string.is_empty_object(undefined)).toBeTruthy();
+        });
+
+        it("should return false for a non-empty object", function() {
+            expect(array_string.is_empty_object({a:"a"})).toBeFalsy();
+            expect(array_string.is_empty_object("abc")).toBeFalsy();
         });
     });
 });
