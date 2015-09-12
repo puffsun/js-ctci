@@ -34,4 +34,4 @@ Copyright (c) 2015 George Sun. Licensed under the MIT license.
 [daviddm-url]: https://david-dm.org/puffsun/js-ctci.svg?theme=shields.io
 [daviddm-image]: https://david-dm.org/puffsun/js-ctci
 [coveralls-url]: https://coveralls.io/r/puffsun/js-ctci
-[coveralls-image]: https://coveralls.io/repos/puffsun/js-ctci/badge.png
+[coveralls-image]: https://coveralls.io/repos/puffsun/js-ctci/badge.png?a=a
