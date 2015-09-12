@@ -128,12 +128,68 @@ module.exports = (function() {
         return str.split("").sort().join("");
     };
 
+    var replace_space = function(str) {
+        if (!str) {
+            return str;
+        }
+        return str.replace(/\s/g, "%20");
+    };
+
+    var basic_compress = function(str) {
+        if (!str) {
+            return str;
+        }
+
+        if (count_of_compression(str) >= str.length) {
+            return str;
+        }
+
+        var count = 0,
+            prev = str[0],
+            result = "",
+            i, length;
+
+        for (i = 0, length = str.length; i < length; i++) {
+            if (str[i] === prev) {
+                count += 1;
+            } else {
+                result += prev;
+                result += count;
+                count = 1;
+                prev = str[i];
+            }
+        }
+        result += prev;
+        result += count;
+
+        return result;
+    };
+
+    function count_of_compression(str) {
+        if (!str) {
+            return 0;
+        }
+
+        var prev = str[0],
+            result = 0,
+            i, length;
+        for (i = 0, length = str.length; i < length; i++) {
+            if (str[i] !== prev) {
+                result += 2;
+                prev = str[i];
+            }
+        }
+        return result + 2;
+    }
+
     return {
         unique_chars     : unique_chars,
         naive_reverse    : naive_reverse,
         reverse          : reverse,
         slow_permutation : slow_permutation,
         permutation      : permutation,
-        is_empty_object  : is_empty_object
+        is_empty_object  : is_empty_object,
+        replace_space    : replace_space,
+        basic_compress   : basic_compress
     };
 }());

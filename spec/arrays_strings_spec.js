@@ -113,7 +113,6 @@ describe("Testing arrays and strings data structures", function() {
                 //}
             ];
             data.forEach(function(item) {
-                console.log("Result: " + array_string.reverse(item.input));
                 expect(array_string.reverse(item.input)).toEqual(item.expected);
             });
         });
@@ -187,6 +186,29 @@ describe("Testing arrays and strings data structures", function() {
         it("should return false for a non-empty object", function() {
             expect(array_string.is_empty_object({a:"a"})).toBeFalsy();
             expect(array_string.is_empty_object("abc")).toBeFalsy();
+        });
+    });
+
+    describe("Testing replace space with '%20'", function() {
+        it("should return replaced string", function() {
+            expect(array_string.replace_space("Mr John Smith")).toEqual("Mr%20John%20Smith");
+            expect(array_string.replace_space("Mr")).toEqual("Mr");
+            expect(array_string.replace_space("")).toEqual("");
+            expect(array_string.replace_space(undefined)).toEqual(undefined);
+            expect(array_string.replace_space(null)).toEqual(null);
+        });
+    });
+
+    describe("Testing basic compression", function() {
+        it("should return compressed string", function() {
+            expect(array_string.basic_compress("aaabbb")).toEqual("a3b3");
+            expect(array_string.basic_compress("aab")).toEqual("aab");
+            expect(array_string.basic_compress("aa")).toEqual("aa");
+            expect(array_string.basic_compress("a")).toEqual("a");
+
+            expect(array_string.basic_compress("")).toEqual("");
+            expect(array_string.basic_compress(undefined)).toEqual(undefined);
+            expect(array_string.basic_compress(null)).toEqual(null);
         });
     });
 });
