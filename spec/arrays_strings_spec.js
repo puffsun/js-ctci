@@ -211,4 +211,98 @@ describe("Testing arrays and strings data structures", function() {
             expect(array_string.basic_compress(null)).toEqual(null);
         });
     });
+
+    describe("Rotating two dimensional array", function() {
+        var tile, tile90, tile180, tileMinus90, tileMinus180,
+            square, square90, square180, squareMinus90, squareMinus180;
+        beforeEach(function() {
+            tile = [
+                ['A', 'B', 'C'],
+                ['D', 'E', 'F'],
+                ['G', 'H', 'I'],
+                ['J', 'K', 'L']
+            ];
+
+            tile90 = [
+                ['C', 'F', 'I', 'L'],
+                ['B', 'E', 'H', 'K'],
+                ['A', 'D', 'G', 'J']
+            ];
+
+            tile180 = [
+                ['L', 'K', 'J'],
+                ['I', 'H', 'G'],
+                ['F', 'E', 'D'],
+                ['C', 'B', 'A']
+            ];
+
+            tileMinus90 = [
+                ['J', 'G', 'D', 'A'],
+                ['K', 'H', 'E', 'B'],
+                ['L', 'I', 'F', 'C']
+            ];
+
+            tileMinus180 = [
+                ['L', 'K', 'J'],
+                ['I', 'H', 'G'],
+                ['F', 'E', 'D'],
+                ['C', 'B', 'A']
+            ];
+
+            square = [
+                ['A', 'B', 'C'],
+                ['D', 'E', 'F'],
+                ['G', 'H', 'I'],
+            ];
+
+            square90 = [
+                ['C', 'F', 'I'],
+                ['B', 'E', 'H'],
+                ['A', 'D', 'G']
+            ];
+
+            square180 = [
+                ['I', 'H', 'G'],
+                ['F', 'E', 'D'],
+                ['C', 'B', 'A']
+            ];
+
+            squareMinus90 = [
+                ['G', 'D', 'A'],
+                ['H', 'E', 'B'],
+                ['I', 'F', 'C']
+            ];
+
+            squareMinus180 = [
+                ['I', 'H', 'G'],
+                ['F', 'E', 'D'],
+                ['C', 'B', 'A']
+            ];
+        });
+
+        it("should return what been passed in for unqualified matrix", function() {
+            expect(array_string.rotate(undefined)).toEqual(undefined);
+            expect(array_string.rotate(null)).toEqual(null);
+            expect(array_string.rotate([])).toEqual([]);
+        });
+
+        it("should rotate non-square matrix accordingly", function() {
+            expect(array_string.rotate(tile, 90)).toEqual(tile90);
+            expect(array_string.rotate(tile, 180)).toEqual(tile180);
+            expect(array_string.rotate(tile, -90)).toEqual(tileMinus90);
+            expect(array_string.rotate(tile, -180)).toEqual(tileMinus180);
+        });
+
+        it("should rotate square matrix accordingly", function() {
+            expect(array_string.rotate(square, 90)).toEqual(square90);
+            expect(array_string.rotate(square, 180)).toEqual(square180);
+            expect(array_string.rotate(square, -90)).toEqual(squareMinus90);
+            expect(array_string.rotate(square, -180)).toEqual(squareMinus180);
+        });
+
+        it("should return original matrix for non times of 90 digrees", function() {
+            expect(array_string.rotate(square, 70)).toEqual(square);
+            expect(array_string.rotate(square, 100)).toEqual(square);
+        });
+    });
 });
