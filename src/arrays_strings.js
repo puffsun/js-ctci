@@ -77,9 +77,6 @@ module.exports = (function() {
     };
 
     var sort_str_asc = function(str) {
-        if (!str) {
-            return str;
-        }
         return str.split("").sort().join("");
     };
 
