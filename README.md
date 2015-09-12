@@ -10,6 +10,7 @@ Solutions to questions in the [Cracking the Coding Interview 5th editions](http:
 
 ```
 git clone https://github.com/puffsun/js-ctci.git
+npm install -D gulp
 cd js-ctci && npm install
 gulp
 ```
