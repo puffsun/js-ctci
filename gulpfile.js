@@ -5,7 +5,7 @@ var plugins = require('gulp-load-plugins')();
 
 var paths = {
     lint: ['./gulpfile.js', './src/**/*.js'],
-    watch: ['./gulpfile.js', './src/**', './spec/**/*.js', '!spec/{temp,temp/**}'],
+    watch: ['./gulpfile.js', './src/**/*.*', './spec/**/*.js', '!spec/{temp,temp/**}'],
     tests: ['./spec/**/*.js', '!spec/{temp,temp/**}'],
     source: ['./src/*.js']
 };
