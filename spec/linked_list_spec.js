@@ -57,6 +57,26 @@ describe("Testing Linked List", function() {
         });
     });
 
+    describe("Testing doubly linked list", function() {
+        var Node, root;
+
+        beforeEach(function() {
+            Node = list.DoublyNode;
+            root = new Node('a');
+            root.append('b');
+        });
+
+        it("should respond to function call", function() {
+            expect(root.append).not.toBeUndefined();
+            expect(root.next).not.toBeUndefined();
+            expect(root.length).not.toBeUndefined();
+            expect(root.exists).not.toBeUndefined();
+            expect(root.remove).not.toBeUndefined();
+            expect(root.head).not.toBeUndefined();
+            expect(root.tail).not.toBeUndefined();
+        });
+    });
+
     describe("Remove duplicates from unsorted linked list", function() {
         it("should return original node with empty or null", function() {
             expect(list.dedup(undefined)).toBeUndefined();

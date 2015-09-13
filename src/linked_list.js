@@ -74,10 +74,30 @@ function SinglyNode(data) {
     };
 }
 
-//function DoublyNode(data) {
-//this.data = data;
-//var next = tail = null;
-//}
+function DoublyNode(data) {
+    this.data = data;
+    var nextNode = null,
+        headNode = this,
+        tailNode = this;
+
+    this.head = function() {
+        return headNode;
+    };
+
+    this.tail = function() {
+        return tailNode;
+    };
+
+    this.length = function() {};
+
+    this.next = function() {};
+
+    this.append = function() {};
+
+    this.remove = function() {};
+
+    this.exists = function() {};
+}
 
 module.exports = (function() {
 
@@ -89,6 +109,7 @@ module.exports = (function() {
 
     return {
         dedup      : dedup,
-        SinglyNode : SinglyNode
+        SinglyNode : SinglyNode,
+        DoublyNode : DoublyNode
     };
 }());
