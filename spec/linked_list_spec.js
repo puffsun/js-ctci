@@ -69,11 +69,34 @@ describe("Testing Linked List", function() {
         it("should respond to function call", function() {
             expect(root.append).not.toBeUndefined();
             expect(root.next).not.toBeUndefined();
+            expect(root.prev).not.toBeUndefined();
             expect(root.length).not.toBeUndefined();
             expect(root.exists).not.toBeUndefined();
             expect(root.remove).not.toBeUndefined();
             expect(root.head).not.toBeUndefined();
             expect(root.tail).not.toBeUndefined();
+        });
+
+        it("should contains the elements that been pushed in", function() {
+            expect(root.head().data).toEqual('a');
+            expect(root.next().data).toEqual('b');
+            expect(root.tail().data).toEqual('b');
+            expect(root.tail().prev().next().data).toEqual('b');
+            expect(root.length()).toEqual(2);
+            expect(root.exists('a')).toBeTruthy();
+            expect(root.exists('b')).toBeTruthy();
+            expect(root.exists('c')).toBeFalsy();
+        });
+
+        it("should remove data been specified", function() {
+            root = root.remove('a');
+            expect(root.length()).toEqual(1);
+
+            root = root.remove('a');
+            expect(root.length()).toEqual(1);
+
+            root = root.remove('b');
+            expect(root.length()).toEqual(0);
         });
     });
 
