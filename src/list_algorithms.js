@@ -1,5 +1,7 @@
 "use strict";
 
+var list = require("./lists.js");
+
 function list_equals(node1, node2) {
     if ((!node1 && !node2)) {
         return true;
@@ -52,10 +54,36 @@ function dedup_slow(root) {
     return root;
 }
 
+function dedup(root) {
+    if (!root) {
+        return root;
+    }
+
+    var container = {},
+        current = root.head(),
+        k, result, keys;
+    while (current !== null) {
+        container[JSON.stringify(current)] = current.data;
+        current = current.next();
+    }
+
+    keys = Object.keys(container);
+    result = new list.SinglyNode(container[keys[0]]);
+    delete container[keys[0]];
+
+    for (k in container) {
+        if (container.hasOwnProperty(k)) {
+            result.append(container[k]);
+        }
+    }
+    return result;
+}
+
 module.exports = (function() {
 
     return {
         dedup_slow  : dedup_slow,
-        list_equals : list_equals
+        list_equals : list_equals,
+        dedup       : dedup
     };
 }());

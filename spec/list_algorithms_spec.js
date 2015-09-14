@@ -54,9 +54,12 @@ describe("Testing Linked List", function() {
         it("should return original node with empty or null", function() {
             expect(algs.dedup_slow(undefined)).toBeUndefined();
             expect(algs.dedup_slow(null)).toBeNull();
+
+            expect(algs.dedup(undefined)).toBeUndefined();
+            expect(algs.dedup(null)).toBeNull();
         });
 
-        it("should dedup linked list", function() {
+        it("should dedup(slow) linked list", function() {
             var result = algs.dedup_slow(root);
             expect(algs.list_equals(result, root)).toBeTruthy();
 
@@ -74,6 +77,42 @@ describe("Testing Linked List", function() {
             de_root.append('e');
             result = algs.dedup_slow(root);
             expect(algs.list_equals(result, de_root)).toBeTruthy();
+        });
+
+        it("should dedup(fast) linked list", function() {
+            var result = algs.dedup(root);
+            expect(result.length()).toEqual(4);
+            expect(result.exists('a')).toBeTruthy();
+            expect(result.exists('b')).toBeTruthy();
+            expect(result.exists('c')).toBeTruthy();
+            expect(result.exists('d')).toBeTruthy();
+
+            root.append('a');
+            result = algs.dedup(root);
+            expect(result.length()).toEqual(4);
+            expect(result.exists('a')).toBeTruthy();
+            expect(result.exists('b')).toBeTruthy();
+            expect(result.exists('c')).toBeTruthy();
+            expect(result.exists('d')).toBeTruthy();
+
+            root.append('a');
+            root.append('a');
+            result = algs.dedup(root);
+            expect(result.length()).toEqual(4);
+            expect(result.exists('a')).toBeTruthy();
+            expect(result.exists('b')).toBeTruthy();
+            expect(result.exists('c')).toBeTruthy();
+            expect(result.exists('d')).toBeTruthy();
+
+            root.append('a');
+            root.append('e');
+            result = algs.dedup(root);
+            expect(result.length()).toEqual(5);
+            expect(result.exists('a')).toBeTruthy();
+            expect(result.exists('b')).toBeTruthy();
+            expect(result.exists('c')).toBeTruthy();
+            expect(result.exists('d')).toBeTruthy();
+            expect(result.exists('e')).toBeTruthy();
         });
     });
 });
