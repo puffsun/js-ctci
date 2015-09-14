@@ -94,7 +94,6 @@ function DoublyNode(data) {
             current = this.head();
 
         while (current !== null) {
-            console.log("current is: " + JSON.stringify(current));
             count += 1;
             current = current.next();
         }
