@@ -43,29 +43,37 @@ describe("Testing Linked List", function() {
             root = new list.SinglyNode('a');
             root.append('b');
             root.append('c');
+            root.append('d');
 
             de_root = new list.SinglyNode('a');
             de_root.append('b');
             de_root.append('c');
+            de_root.append('d');
         });
 
         it("should return original node with empty or null", function() {
-            expect(algs.dedup(undefined)).toBeUndefined();
-            expect(algs.dedup(null)).toBeNull();
+            expect(algs.dedup_slow(undefined)).toBeUndefined();
+            expect(algs.dedup_slow(null)).toBeNull();
         });
 
         it("should dedup linked list", function() {
-            var result = algs.dedup(root);
+            var result = algs.dedup_slow(root);
             expect(algs.list_equals(result, root)).toBeTruthy();
 
             root.append('a');
-            result = algs.dedup(root);
+            result = algs.dedup_slow(root);
             expect(algs.list_equals(result, de_root)).toBeTruthy();
 
-            //root.append('a');
-            //root.append('a');
-            //result = algs.dedup(root);
-            //expect(algs.list_equals(result, de_root)).toBeTruthy();
+            root.append('a');
+            root.append('a');
+            result = algs.dedup_slow(root);
+            expect(algs.list_equals(result, de_root)).toBeTruthy();
+
+            root.append('a');
+            root.append('e');
+            de_root.append('e');
+            result = algs.dedup_slow(root);
+            expect(algs.list_equals(result, de_root)).toBeTruthy();
         });
     });
 });

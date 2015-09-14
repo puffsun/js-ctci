@@ -22,7 +22,7 @@ function list_equals(node1, node2) {
     return true;
 }
 
-function dedup(root) {
+function dedup_slow(root) {
     if (!root) {
         return root;
     }
@@ -33,15 +33,14 @@ function dedup(root) {
         c2;
     while (c1 !== null) {
         c2 = c1.next();
-        //console.log("c1: " + JSON.stringify(c1));
         while (c2 !== null) {
-            //console.log("c2: " + JSON.stringify(c2));
             if (c1.data === c2.data) {
                 l2.next(c2.next());
                 if (c2.next() === null) {
                     break;
                 } else {
                     c2 = c2.next();
+                    continue;
                 }
             }
             l2 = c2;
@@ -56,7 +55,7 @@ function dedup(root) {
 module.exports = (function() {
 
     return {
-        dedup      : dedup,
+        dedup_slow  : dedup_slow,
         list_equals : list_equals
     };
 }());
