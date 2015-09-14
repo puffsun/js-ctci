@@ -105,6 +105,9 @@ describe("Testing Linked List", function() {
             root.append('f');
             expect(root.length()).toEqual(5);
 
+            root = root.remove('d');
+            expect(root.length()).toEqual(5);
+
             root = root.remove('f');
             expect(root.length()).toEqual(4);
         });
