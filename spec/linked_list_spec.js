@@ -91,12 +91,22 @@ describe("Testing Linked List", function() {
         it("should remove data been specified", function() {
             root = root.remove('a');
             expect(root.length()).toEqual(1);
+            expect(root.exists('a')).toBeFalsy();
+            expect(root.exists('b')).toBeTruthy();
 
             root = root.remove('a');
             expect(root.length()).toEqual(1);
+            expect(root.exists('a')).toBeFalsy();
+            expect(root.exists('b')).toBeTruthy();
 
-            root = root.remove('b');
-            expect(root.length()).toEqual(0);
+            root.append('c');
+            root.append('d');
+            root.append('e');
+            root.append('f');
+            expect(root.length()).toEqual(5);
+
+            root = root.remove('f');
+            expect(root.length()).toEqual(4);
         });
     });
 

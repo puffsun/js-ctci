@@ -128,6 +128,7 @@ function DoublyNode(data) {
             last = this.head();
 
         if (current.data === data) {
+            headNode = current.next();
             return current.next();
         }
 
