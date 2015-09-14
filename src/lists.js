@@ -164,15 +164,7 @@ function DoublyNode(data) {
 }
 
 module.exports = (function() {
-
-    var dedup = function(root) {
-        if (!root) {
-            return root;
-        }
-    };
-
     return {
-        dedup      : dedup,
         SinglyNode : SinglyNode,
         DoublyNode : DoublyNode
     };

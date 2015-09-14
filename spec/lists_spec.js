@@ -1,6 +1,6 @@
 "use strict";
 
-var list = require("../src/linked_list.js");
+var list = require("../src/lists.js");
 
 describe("Testing Linked List", function() {
 
@@ -121,17 +121,6 @@ describe("Testing Linked List", function() {
             expect(root.exists('c')).toBeTruthy();
             expect(root.exists('e')).toBeTruthy();
             expect(root.exists('f')).toBeFalsy();
-        });
-    });
-
-    describe("Remove duplicates from unsorted linked list", function() {
-        it("should return original node with empty or null", function() {
-            expect(list.dedup(undefined)).toBeUndefined();
-            expect(list.dedup(null)).toBeNull();
-        });
-
-        it("should dedup linked list", function() {
-            // TODO
         });
     });
 });
