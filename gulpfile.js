@@ -2,6 +2,8 @@
 
 var gulp   = require('gulp');
 var plugins = require('gulp-load-plugins')();
+var debug = false;
+var gutil = require("gulp-util");
 
 var paths = {
     lint: ['./gulpfile.js', './src/**/*.js'],
@@ -18,6 +20,12 @@ if (process.env.CI) {
     };
 }
 
+gulp.task('debug', function() {
+    debug = true;
+    gutil.log( gutil.colors.green('RUNNING IN DEBUG MODE') );
+    gulp.start('default');
+});
+
 gulp.task('lint', function () {
     return gulp.src(paths.lint)
     .pipe(plugins.jshint('.jshintrc'))
@@ -27,6 +35,7 @@ gulp.task('lint', function () {
 });
 
 gulp.task('istanbul', function (cb) {
+    debug = debug || false;
     gulp.src(paths.source)
     .pipe(plugins.istanbul()) // Covering files
     .pipe(plugins.istanbul.hookRequire()) // Force `require` to return covered files
