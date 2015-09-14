@@ -104,12 +104,23 @@ describe("Testing Linked List", function() {
             root.append('e');
             root.append('f');
             expect(root.length()).toEqual(5);
+            expect(root.exists('b')).toBeTruthy();
+            expect(root.exists('c')).toBeTruthy();
+            expect(root.exists('d')).toBeTruthy();
+            expect(root.exists('e')).toBeTruthy();
+            expect(root.exists('f')).toBeTruthy();
 
             root = root.remove('d');
-            expect(root.length()).toEqual(5);
+            expect(root.length()).toEqual(4);
+            expect(root.exists('d')).toBeFalsy();
+            expect(root.exists('e')).toBeTruthy();
+            expect(root.exists('f')).toBeTruthy();
 
             root = root.remove('f');
-            expect(root.length()).toEqual(4);
+            expect(root.length()).toEqual(3);
+            expect(root.exists('c')).toBeTruthy();
+            expect(root.exists('e')).toBeTruthy();
+            expect(root.exists('f')).toBeFalsy();
         });
     });
 

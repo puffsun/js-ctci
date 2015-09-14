@@ -139,8 +139,8 @@ function DoublyNode(data) {
                 last.next(n);
                 return this.head();
             }
-            current = current.next();
             last = current;
+            current = current.next();
         }
 
         if (this.tail().data === data) {
