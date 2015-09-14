@@ -38,12 +38,15 @@ describe("Testing Linked List", function() {
     });
 
     describe("Remove duplicates from unsorted linked list", function() {
-        var root;
+        var root, de_root;
         beforeEach(function() {
             root = new list.SinglyNode('a');
             root.append('b');
             root.append('c');
-            root.append('d');
+
+            de_root = new list.SinglyNode('a');
+            de_root.append('b');
+            de_root.append('c');
         });
 
         it("should return original node with empty or null", function() {
@@ -52,6 +55,17 @@ describe("Testing Linked List", function() {
         });
 
         it("should dedup linked list", function() {
+            var result = algs.dedup(root);
+            expect(algs.list_equals(result, root)).toBeTruthy();
+
+            root.append('a');
+            result = algs.dedup(root);
+            expect(algs.list_equals(result, de_root)).toBeTruthy();
+
+            //root.append('a');
+            //root.append('a');
+            //result = algs.dedup(root);
+            //expect(algs.list_equals(result, de_root)).toBeTruthy();
         });
     });
 });
