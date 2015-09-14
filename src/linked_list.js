@@ -90,10 +90,11 @@ function DoublyNode(data) {
     };
 
     this.length = function() {
-        var count = 1,
+        var count = 0,
             current = this.head();
 
-        while (current.next() !== null) {
+        while (current !== null) {
+            console.log("current is: " + JSON.stringify(current));
             count += 1;
             current = current.next();
         }
@@ -136,15 +137,18 @@ function DoublyNode(data) {
             if (current.data === data) {
                 var n = current.next();
                 n.prev(last);
-                if (n !== null) {
-                    current.next(n.next());
-                }
-                return current;
+                last.next(n);
+                return this.head();
             }
             current = current.next();
             last = current;
         }
-        return current;
+
+        if (this.tail().data === data) {
+            tailNode = current.prev();
+            this.tail().next(null);
+        }
+        return this.head();
     };
 
     this.exists = function(data) {
