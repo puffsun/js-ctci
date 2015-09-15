@@ -115,4 +115,35 @@ describe("Testing Linked List", function() {
             expect(result.exists('e')).toBeTruthy();
         });
     });
+
+    describe("Testing the kth to last element", function() {
+        var root;
+        beforeEach(function() {
+            root = new list.SinglyNode('a');
+            root.append('b');
+            root.append('c');
+            root.append('d');
+        });
+
+        it("should return -1 for empty or null object", function() {
+            expect(algs.last_kth(null, 1)).toEqual(-1);
+            expect(algs.last_kth(undefined, 1)).toEqual(-1);
+        });
+
+        it("should throw error with minus k", function() {
+            expect(function() {algs.last_kth(root, -1);}).toThrow(new Error("Minus k"));
+            expect(function() {algs.last_kth(root, -10);}).toThrow(new Error("Minus k"));
+        });
+
+        it("should throw error if k > the length of list", function() {
+            expect(function() {algs.last_kth(root, 4);}).toThrow(new Error("k too large"));
+            expect(function() {algs.last_kth(root, 5);}).toThrow(new Error("k too large"));
+        });
+
+        it("should return the last kth element", function() {
+            expect(algs.last_kth(root, 1)).toEqual('c');
+            expect(algs.last_kth(root, 2)).toEqual('b');
+            expect(algs.last_kth(root, 0)).toEqual('d');
+        });
+    });
 });

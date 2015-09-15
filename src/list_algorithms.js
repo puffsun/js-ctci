@@ -79,11 +79,38 @@ function dedup(root) {
     return result;
 }
 
+function last_kth(root, k) {
+    if (!root) {
+        return -1;
+    }
+
+    if (k < 0) {
+        throw new Error("Minus k");
+    }
+
+    if (k >= root.length()) {
+         throw new Error("k too large");
+    }
+
+    var current = root.head(),
+        count = 0,
+        back = root.head();
+    while (current != null) {
+        if (count > k) {
+            back = back.next();
+        }
+        count += 1;
+        current = current.next();
+    }
+    return back.data;
+}
+
 module.exports = (function() {
 
     return {
         dedup_slow  : dedup_slow,
         list_equals : list_equals,
-        dedup       : dedup
+        dedup       : dedup,
+        last_kth    : last_kth
     };
 }());
