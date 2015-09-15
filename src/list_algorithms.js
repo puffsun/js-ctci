@@ -105,12 +105,41 @@ function last_kth(root, k) {
     return back.data;
 }
 
+function palindrome(root) {
+    if (!root) {
+        return true;
+    }
+
+    var fast = root.head(),
+        slow = root.head(),
+        first_half = [];
+
+    while (fast !== null && fast.next() !== null) {
+        first_half.push(slow.data);
+        slow = slow.next();
+        fast = fast.next().next();
+    }
+
+    if (fast !== null) {
+        slow = slow.next();
+    }
+
+    while (slow !== null) {
+        if (first_half.pop() !== slow.data) {
+            return false;
+        }
+        slow = slow.next();
+    }
+    return true;
+}
+
 module.exports = (function() {
 
     return {
         dedup_slow  : dedup_slow,
         list_equals : list_equals,
         dedup       : dedup,
-        last_kth    : last_kth
+        last_kth    : last_kth,
+        palindrome  : palindrome
     };
 }());

@@ -146,4 +146,41 @@ describe("Testing Linked List", function() {
             expect(algs.last_kth(root, 0)).toEqual('d');
         });
     });
+
+    describe("Testing if given list is palindrome", function() {
+        var l1, l2, l3;
+        beforeEach(function() {
+            l1 = new list.SinglyNode('a');
+            l1.append('b');
+            l1.append('c');
+            l1.append('d');
+
+            l2 = new list.SinglyNode('a');
+            l2.append('b');
+            l2.append('c');
+            l2.append('b');
+            l2.append('a');
+
+            l3 = new list.SinglyNode('a');
+            l3.append('b');
+            l3.append('c');
+            l3.append('c');
+            l3.append('b');
+            l3.append('a');
+        });
+
+        it("should return true for empty or null", function() {
+            expect(algs.palindrome(null)).toBeTruthy();
+            expect(algs.palindrome(undefined)).toBeTruthy();
+        });
+
+        it("should return true for a palindrome", function() {
+            expect(algs.palindrome(l2)).toBeTruthy();
+            expect(algs.palindrome(l3)).toBeTruthy();
+        });
+
+        it("should return false for non-palindrome", function() {
+            expect(algs.palindrome(l1)).toBeFalsy();
+        });
+    });
 });
