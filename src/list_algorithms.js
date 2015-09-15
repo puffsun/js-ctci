@@ -89,7 +89,7 @@ function last_kth(root, k) {
     }
 
     if (k >= root.length()) {
-         throw new Error("k too large");
+        throw new Error("k too large");
     }
 
     var current = root.head(),
