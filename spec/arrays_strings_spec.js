@@ -200,6 +200,20 @@ describe("Testing arrays and strings data structures", function() {
     });
 
     describe("Testing basic compression", function() {
+        describe("test count of basic compression", function() {
+            it("should return 0 for empty or null", function() {
+                expect(array_string.count_of_compression("")).toEqual(0);
+                expect(array_string.count_of_compression(null)).toEqual(0);
+                expect(array_string.count_of_compression(undefined)).toEqual(0);
+            });
+
+            it("should return the actual count for others", function() {
+                expect(array_string.count_of_compression("aabb")).toEqual(4);
+                expect(array_string.count_of_compression("aaabb")).toEqual(4);
+                expect(array_string.count_of_compression("aaabbb")).toEqual(4);
+            });
+        });
+
         it("should return compressed string", function() {
             expect(array_string.basic_compress("aaabbb")).toEqual("a3b3");
             expect(array_string.basic_compress("aab")).toEqual("aab");

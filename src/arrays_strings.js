@@ -276,14 +276,15 @@ module.exports = (function() {
     };
 
     return {
-        unique_chars     : unique_chars,
-        naive_reverse    : naive_reverse,
-        reverse          : reverse,
-        slow_permutation : slow_permutation,
-        permutation      : permutation,
-        is_empty_object  : is_empty_object,
-        replace_space    : replace_space,
-        basic_compress   : basic_compress,
-        rotate           : rotate
+        unique_chars         : unique_chars,
+        naive_reverse        : naive_reverse,
+        reverse              : reverse,
+        slow_permutation     : slow_permutation,
+        permutation          : permutation,
+        is_empty_object      : is_empty_object,
+        replace_space        : replace_space,
+        basic_compress       : basic_compress,
+        rotate               : rotate,
+        count_of_compression : count_of_compression
     };
 }());
