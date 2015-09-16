@@ -2,8 +2,8 @@
 
 var algs = require('../src/stack.js');
 
-describe("Testing ThreeStack", function() {
-    describe("the data structure", function() {
+describe("Testing Stack algorithms", function() {
+    describe("the ThreeStack data structure", function() {
         var ts;
         beforeEach(function() {
             ts = new algs.ThreeStack();
@@ -37,4 +37,30 @@ describe("Testing ThreeStack", function() {
             expect(ts.pop(2)).toEqual(undefined);
         });
     });
+
+    describe("The MinStack data structure", function() {
+        var ms;
+        beforeEach(function() {
+            ms = new algs.MinStack();
+            ms.push(3);
+            ms.push(1);
+            ms.push(2);
+        });
+
+        it("should contains the elements been pushed", function() {
+            expect(ms.peek()).toEqual(2);
+            expect(ms.pop()).toEqual(2);
+        });
+
+        it("should return min element with O(1)", function() {
+            expect(ms.min()).toEqual(1);
+            expect(ms.pop()).toEqual(2);
+            expect(ms.min()).toEqual(1);
+            expect(ms.pop()).toEqual(1);
+            expect(ms.min()).toEqual(3);
+            expect(ms.pop()).toEqual(3);
+            expect(ms.min()).toEqual(Number.MAX_VALUE);
+        });
+    });
 });
+
