@@ -6,7 +6,7 @@ var debug = false;
 var gutil = require("gulp-util");
 
 var paths = {
-    lint: ['./gulpfile.js', './src/**/*.js'],
+    lint: ['./gulpfile.js', './src/**/*.js', './spec/**/*.js'],
     watch: ['./gulpfile.js', './src/**/*.*', './spec/**/*.js', '!spec/{temp,temp/**}'],
     tests: ['./spec/**/*.js', '!spec/{temp,temp/**}'],
     source: ['./src/*.js']
