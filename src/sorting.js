@@ -77,7 +77,7 @@ function quick_sort_rec(ary, left, right) {
     }
 
     if (index < right) {
-        quick_sort_rec(ary, index + 1, right);
+        quick_sort_rec(ary, index, right);
     }
     return ary;
 }
