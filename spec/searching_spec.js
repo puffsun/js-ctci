@@ -38,4 +38,30 @@ describe("Test searching", function() {
             expect(search.binary_search(["b", "c"], "c")).toEqual(1);
         });
     });
+
+    describe("searching sorted and rotated array", function() {
+        var ary, ary1, ary2;
+        beforeEach(function() {
+            ary = [2, 3, 2, 2, 2, 2, 2, 2, 2, 2];
+            ary1 = [10, 15, 20, 0, 5];
+            ary2 = [50, 5, 20, 30, 40];
+        });
+        it("should return result if exists", function() {
+            expect(search.search_sorted_rotated_array(ary, 2)).toEqual(4);
+            expect(search.search_sorted_rotated_array(ary, 3)).toEqual(1);
+            expect(search.search_sorted_rotated_array(ary, 4)).toEqual(-1);
+            expect(search.search_sorted_rotated_array(ary, 1)).toEqual(-1);
+            expect(search.search_sorted_rotated_array(ary, 8)).toEqual(-1);
+
+            expect(search.search_sorted_rotated_array(ary1, 0)).toEqual(3);
+            expect(search.search_sorted_rotated_array(ary1, 15)).toEqual(1);
+            expect(search.search_sorted_rotated_array(ary1, 20)).toEqual(2);
+            expect(search.search_sorted_rotated_array(ary1, 5)).toEqual(4);
+
+            expect(search.search_sorted_rotated_array(ary2, 50)).toEqual(0);
+            expect(search.search_sorted_rotated_array(ary2, 5)).toEqual(1);
+            expect(search.search_sorted_rotated_array(ary2, 20)).toEqual(2);
+            expect(search.search_sorted_rotated_array(ary2, 30)).toEqual(3);
+        });
+    });
 });
