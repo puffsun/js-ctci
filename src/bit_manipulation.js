@@ -28,6 +28,34 @@ function clear_bits_thru_zero(num, index) {
     return num & mask;
 }
 
+function add_binary(bin_str1, bin_str2) {
+    if (!bin_str1) {
+        return bin_str2;
+    }
+
+    if (!bin_str2) {
+        return bin_str1;
+    }
+
+    var l1 = bin_str1.length,
+        l2 = bin_str2.length,
+        max_length  = Math.max(l1, l2),
+        carry = 0, sum = [],
+        i, m, n, added;
+
+    for (i = 0; i < max_length; i++) {
+        m = get_bit(bin_str1, l1 - i - 1);
+        n = get_bit(bin_str2, l2 - i - 1);
+        added = m + n + carry;
+        sum.push(added % 2);
+        carry = added / 2;
+    }
+    if (carry === 1) {
+        sum.push("1");
+    }
+    return sum.reverse().join("");
+}
+
 module.exports = (function() {
     return {
         get_bit              : get_bit,
@@ -35,6 +63,7 @@ module.exports = (function() {
         clear_bit            : clear_bit,
         update_bit           : update_bit,
         clear_bits_msb       : clear_bits_msb,
-        clear_bits_thru_zero : clear_bits_thru_zero
+        clear_bits_thru_zero : clear_bits_thru_zero,
+        add_binary           : add_binary
     };
 } ());

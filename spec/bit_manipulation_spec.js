@@ -44,4 +44,13 @@ describe("Testing bit operations", function() {
             expect(bits.clear_bits_thru_zero(10, 3)).toEqual(0);
         });
     });
+
+    describe("adding two binary strings", function() {
+        it("should add two binary strings accordingly", function() {
+            expect(bits.add_binary("", "")).toEqual("");
+            expect(bits.add_binary("", "1")).toEqual("1");
+            expect(bits.add_binary("1", "")).toEqual("1");
+            expect(bits.add_binary("11", "1")).toEqual("100");
+        });
+    });
 });
